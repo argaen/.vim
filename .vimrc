@@ -6,8 +6,6 @@ set incsearch
 set number
 set showmatch
 
-set nobackup
-set noswapfile
 
 set hls
 set background=dark
@@ -15,6 +13,17 @@ set clipboard=unnamedplus
 
 map <C-p> :set paste<CR>
 map <C-n> :set nopaste<CR>
+
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+nnoremap j gj
+nnoremap k gk
+
+map <silent> ñ :nohlsearch<CR>
+
+cmap w!! w !sudo tee % >/dev/null
 
 
 set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
