@@ -14,10 +14,6 @@ set clipboard=unnamedplus
 map <C-p> :set paste<CR>
 map <C-n> :set nopaste<CR>
 
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
