@@ -1,4 +1,5 @@
 syntax on
+" set spell spelllang=en_us
 let python_highlight_all = 1
 
 set hidden
