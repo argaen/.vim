@@ -38,7 +38,8 @@ set foldlevel=99
 filetype on
 filetype plugin indent on
 
-autocmd BufRead,BufNewFile * setlocal tabstop=4 shiftwidth=4 expandtab softtabstop=4
-autocmd BufRead,BufNewFile *.js,*.php,*.css,*.html setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
+au BufRead,BufNewFile * setlocal tabstop=4 shiftwidth=4 expandtab softtabstop=4
+au BufRead,BufNewFile *.js,*.php,*.css,*.html setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
+au BufRead,BufNewFile *.less setfiletype css
 
 colorscheme delek

@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/mnt/autorun'
 let g:netrw_dirhist_2='/home/blck/Projects/git/rgraphm'
 let g:netrw_dirhist_3='/media/D00F-93CC/Imprimir'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/home/blck/Dropbox/seeslab/Cluster/issues'
 let g:netrw_dirhist_6='/home/blck/.ssh'
 let g:netrw_dirhist_7='/home/blck'
 let g:netrw_dirhist_8='/home/blck/.ssh'
+let g:netrw_dirhist_9='/home/blck/Projects/sparking_proxy_client'
