@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/administrator/Seeslab_Projects/Sees-Web/branches/new_web_design/media/news_images'
-let g:netrw_dirhist_2='/home/blck/.vim'
-let g:netrw_dirhist_3='/home/blck/Dropbox/manuals/mysql'
-let g:netrw_dirhist_4='/home/administrator/Dropbox/sistemes_informatics/Manu/ex1'
-let g:netrw_dirhist_5='/var/www'
-let g:netrw_dirhist_6='/usr/local/sbin'

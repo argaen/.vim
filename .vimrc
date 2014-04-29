@@ -1,5 +1,4 @@
 syntax on
-" set spell spelllang=en_us
 let python_highlight_all = 1
 
 set hidden
@@ -44,3 +43,7 @@ au BufRead,BufNewFile *.js,*.php,*.css,*.html setlocal tabstop=2 shiftwidth=2 ex
 au BufRead,BufNewFile *.less setfiletype css
 
 colorscheme delek
+
+execute pathogen#infect()
+let g:syntastic_python_checkers = ['pep8', 'flake8']
+let g:syntastic_check_on_open = 1
