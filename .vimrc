@@ -1,15 +1,21 @@
 syntax on
 let python_highlight_all = 1
 
-set hidden
-set incsearch
-set number
+set autoread        " autoreload files when changed in disk
+set hidden          
+set incsearch       " incremental search
+set number          " show line numbers
 set showmatch
 
 
 set hls
 set background=dark
 set clipboard=unnamedplus
+set directory-=.    " Don't store swapfiles
+set list            " Show trailing whitespace
+set listchars=tab:▸\ ,trail:▫
+set scrolloff=5     " Show above/below lines while scrolling
+set mouse=a
 
 map <C-p> :set paste<CR>
 map <C-n> :set nopaste<CR>
