@@ -15,7 +15,6 @@ set directory-=.    " Don't store swapfiles
 set list            " Show trailing whitespace
 set listchars=tab:▸\ ,trail:▫
 set scrolloff=5     " Show above/below lines while scrolling
-set mouse=a
 
 map <C-p> :set paste<CR>
 map <C-n> :set nopaste<CR>
