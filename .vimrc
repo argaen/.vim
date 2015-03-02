@@ -12,6 +12,7 @@ set hls
 set clipboard=unnamedplus
 set directory-=.    " Don't store swapfiles
 set list            " Show trailing whitespace
+:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 set listchars=tab:▸\ ,trail:▫
 set scrolloff=5     " Show above/below lines while scrolling
 
@@ -28,6 +29,11 @@ cmap w!! w !sudo tee % >/dev/null
 
 set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 set omnifunc=pythoncomplete#Complete
+" If you prefer the Omni-Completion tip window to close when a selection is
+" " made, these lines close it on movement in insert mode or when leaving
+" " insert mode
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 inoremap <Nul> <C-x><C-o>
 
 let g:SuperTabDefaultCompletionType = "context"
@@ -41,9 +47,15 @@ set foldlevel=99
 set laststatus=2
 set t_Co=256
 
+
 "airline
 let g:airline#theme             = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+nmap <C-t> :enew<cr>
+nmap <tab> :bnext<CR>
+nmap <S-tab> :bprevious<CR>
+nmap <C-c> :bp <BAR> bd #<CR>
 
 filetype on
 filetype plugin indent on
@@ -58,6 +70,8 @@ let g:syntastic_python_checkers = ['pep8', 'flake8']
 let g:syntastic_check_on_open = 1
 let g:syntastic_python_pep8_args='--ignore=E501'
 let g:syntastic_python_flake8_args='--ignore=E501'
+let g:syntastic_always_populate_loc_list = 1
+nmap <C-e> :lne<CR>
 
 colorscheme desert
 set cursorline
