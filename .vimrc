@@ -53,9 +53,11 @@ let g:airline#theme             = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 nmap <C-t> :enew<cr>
+imap <C-t> <Esc>:enew<cr>
 nmap <tab> :bnext<CR>
 nmap <S-tab> :bprevious<CR>
 nmap <C-c> :bp <BAR> bd #<CR>
+imap <C-c> <Esc>:bp <BAR> bd #<CR>
 
 filetype on
 filetype plugin indent on
