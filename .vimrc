@@ -77,5 +77,5 @@ nmap <C-e> :lne<CR>
 
 colorscheme desert
 set cursorline
-hi CursorLine term=bold cterm=bold ctermbg=8
-hi CursorLineNr ctermbg=8
+hi CursorLine term=none cterm=none ctermbg=235
+hi CursorLineNr ctermbg=235
