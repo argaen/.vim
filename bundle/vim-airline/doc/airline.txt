@@ -242,6 +242,15 @@ cost.  You can disable the check with the following flag. >
   Note: Third party plugins that rely on this behavior will be affected. You
   will need to manually load them.
 
+Alternatively, if you want a minimalistic setup and would rather opt-in which
+extensions get loaded instead of disabling each individually, you can declare
+the following list variable: >
+  " an empty list disables all extensions
+  let g:airline_extensions = []
+
+  " or only load what you want
+  let g:airline_extensions = ['branch', 'tabline']
+<
 -------------------------------------                      *airline-default*
 The default extension understands all of the `g:` variables in the
 |airline-configuration| section, however it also has some more fine-tuned
@@ -349,6 +358,7 @@ csv.vim <https://github.com/chrisbra/csv.vim>
 vim-gitgutter <https://github.com/airblade/vim-gitgutter>
 vim-signify <https://github.com/mhinz/vim-signify>
 changesPlugin <https://github.com/chrisbra/changesPlugin>
+quickfixsigns <https://github.com/tomtom/quickfixsigns_vim>
 
 * enable/disable showing a summary of changed hunks under source control. >
   let g:airline#extensions#hunks#enabled = 1
@@ -398,6 +408,11 @@ eclim <https://eclim.org>
   " certain number of spaces are allowed after tabs, but not in between
   " this algorithm works well for /** */ style comments in a tab-indented file
   let g:airline#extensions#whitespace#mixed_indent_algo = 1
+
+  " spaces are allowed after tabs, but not in between
+  " this algorithm works well with programming styles that use tabs for
+  " indentation and spaces for alignment
+  let g:airline#extensions#whitespace#mixed_indent_algo = 2
 <
 * customize the whitespace symbol. >
   let g:airline#extensions#whitespace#symbol = '!'
@@ -428,9 +443,10 @@ eclim <https://eclim.org>
 * configure filename match rules to exclude from the tabline. >
   let g:airline#extensions#tabline#excludes = []
 <
-* configure how numbers are calculated in tab mode. >
+* configure how numbers are displayed in tab mode. >
   let g:airline#extensions#tabline#tab_nr_type = 0 " # of splits (default)
   let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+  let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 <
 * enable/disable displaying tab number in tabs mode. >
   let g:airline#extensions#tabline#show_tab_nr = 1
@@ -479,6 +495,9 @@ exposed.
 <
     * configure collapsing parent directories in buffer name. >
       let g:airline#extensions#tabline#fnamecollapse = 1
+<
+    * configure truncating non-active buffer names to specified length. >
+      let g:airline#extensions#tabline#fnametruncate = 0
 
   " The `unique_tail` algorithm will display the tail of the filename, unless
   " there is another file of the same name, in which it will display it along
