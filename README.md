@@ -1,9 +1,12 @@
 # .vim
 Vim configuration
 
-To install, just place the **.vim** folder under your home. Copy (or ln -s) the **.vim/.vimrc** file under your home also.
+To install, just place the **.vim** folder under your home. Copy (or ln -s) the **.vim/.vimrc** file under your home also. Then:
+    - git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    - Open vim a type `:PluginInstall` and wait for the process to end.
 
 - For python checkers, install pep8 and flake8 with `pip install pep8 flake8`
+- For side bar (tagbar) install `ctags` package.
 - If autocomplete is not working:
     - sudo apt-get install build-essential cmake python-dev
     - cd ~/.vim/bundle/YouCompleteMe; ./install.sh --clang-completer
