@@ -1,3 +1,4 @@
+set encoding=utf-8
 " needed to run vundle (but i want this anyways)
 set nocompatible
 
