@@ -67,6 +67,12 @@ set scrolloff=5     " Show above/below lines while scrolling
 map <C-p> :set paste<CR>
 map <C-n> :set nopaste<CR>
 
+imap ii <Esc>
+
+" Breakpoints for python
+au FileType python map <silent> <leader>b oimport pdb; pdb.set_trace()<esc>
+au FileType python map <silent> <leader>B Oimport pdb; pdb.set_trace()<esc>
+
 nnoremap j gj
 nnoremap k gk
 
