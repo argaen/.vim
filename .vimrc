@@ -25,11 +25,14 @@ Plugin 'gmarik/Vundle.vim'
 
 " YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'bling/vim-airline'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-scripts/gitignore'
 
 " add plugins before this
 call vundle#end()
@@ -57,7 +60,7 @@ map <f11> :!pysmell .<cr>
 set wildmenu
 
 set hls
-set clipboard=unnamedplus
+set clipboard=unnamed
 set directory-=.    " Don't store swapfiles
 set list            " Show trailing whitespace
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
@@ -70,8 +73,8 @@ map <C-n> :set nopaste<CR>
 imap ii <Esc>
 
 " Breakpoints for python
-au FileType python map <silent> <leader>b oimport pdb; pdb.set_trace()<esc>
-au FileType python map <silent> <leader>B Oimport pdb; pdb.set_trace()<esc>
+au FileType python map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
+au FileType python map <silent> <leader>B Oimport ipdb; ipdb.set_trace()<esc>
 
 nnoremap j gj
 nnoremap k gk
@@ -129,9 +132,36 @@ au BufRead,BufNewFile *.less setfiletype css
 
 nmap <F8> :TagbarToggle<CR>
 
-let g:syntastic_python_checkers = ['pep8', 'flake8']
+let g:syntastic_python_checkers = ['pep8', 'flake8', 'pylint']
 let g:syntastic_check_on_open = 0
 let g:syntastic_python_pep8_args='--ignore=E501'
 let g:syntastic_python_flake8_args='--ignore=E501'
 let g:syntastic_always_populate_loc_list = 1
 nmap <C-e> :lne<CR>
+
+set mouse=a
+set backspace=2 "
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+au FileType python match OverLength /\%121v.\+/
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
+
+let g:ctrlp_use_caching = 0
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+else
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+    let g:ctrlp_prompt_mappings = {
+                \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
+                \ }
+endif
+
+autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+nnoremap <Leader>] :YcmCompleter GoTo<CR>
+" nnoremap <Leader>[ :YcmCompleter GoToReferences<CR>
