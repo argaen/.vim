@@ -33,6 +33,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-scripts/gitignore'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'airblade/vim-gitgutter'
+
+set updatetime=250
 
 " add plugins before this
 call vundle#end()
@@ -126,8 +130,8 @@ set cursorline
 hi CursorLine term=none cterm=none ctermbg=235
 hi CursorLineNr ctermbg=235
 
-au BufRead,BufNewFile * setlocal tabstop=4 shiftwidth=4 expandtab softtabstop=4
-au BufRead,BufNewFile *.js,*.php,*.css,*.html setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
+au BufRead,BufNewFile * setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
+au BufRead,BufNewFile *.py setlocal tabstop=4 shiftwidth=4 expandtab softtabstop=4
 au BufRead,BufNewFile *.less setfiletype css
 
 nmap <F8> :TagbarToggle<CR>
