@@ -1,7 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/Users/manuelmiranda/Projects/partnersorting/partnersorting/services/tasks'
 let g:netrw_dirhist_2='/Users/manuelmiranda/Projects/partnersorting/partnersorting/services/dynamo'
 let g:netrw_dirhist_3='/Users/manuelmiranda/Projects/partnersorting/tests/services/dynamo/scaling'
 let g:netrw_dirhist_4='/Users/manuelmiranda/Projects/devops/release/templates'
 let g:netrw_dirhist_5='/Users/manuelmiranda/Projects/clio-aggregator/src/main/scala/net/skyscanner/clio/aggregator'
+let g:netrw_dirhist_6='/Users/manuelmiranda/Projects/devops/server/roles/bls/files'
+let g:netrw_dirhist_7='/Users/manuelmiranda/Projects/bellboy/bellboy/accommodations'
+let g:netrw_dirhist_8='/Users/manuelmiranda/Projects/bellboy/.git/hooks'
+let g:netrw_dirhist_9='/Users/manuelmiranda/Projects/aiohttp/tests'

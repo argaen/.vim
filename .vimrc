@@ -31,20 +31,23 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-scripts/gitignore'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'nvie/vim-flake8'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 set updatetime=250
+let mapleader = "\<Space>"
 
 " add plugins before this
 call vundle#end()
 
-" now (after vundle finished) it is save to turn filetype plugins on
+" now (after vundle finished) it is safe to turn filetype plugins on
 syntax on
 filetype plugin indent on
 let python_highlight_all = 1
+
 
 set autoread        " autoreload files when changed in disk
 set hidden
@@ -71,14 +74,12 @@ set list            " Show trailing whitespace
 set listchars=tab:▸\ ,trail:▫
 set scrolloff=5     " Show above/below lines while scrolling
 
-map <C-p> :set paste<CR>
-map <C-n> :set nopaste<CR>
-
 imap ii <Esc>
 
 " Breakpoints for python
 au FileType python map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
 au FileType python map <silent> <leader>B Oimport ipdb; ipdb.set_trace()<esc>
+au FileType python map <silent> <leader>s :SyntasticToggleMode<esc>
 
 nnoremap j gj
 nnoremap k gk
@@ -88,7 +89,6 @@ map <silent> ñ :nohlsearch<CR>
 cmap w!! w !sudo tee % >/dev/null
 
 
-set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 set omnifunc=pythoncomplete#Complete
 " If you prefer the Omni-Completion tip window to close when a selection is
 " " made, these lines close it on movement in insert mode or when leaving
@@ -136,10 +136,11 @@ au BufRead,BufNewFile *.less setfiletype css
 
 nmap <F8> :TagbarToggle<CR>
 
+let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 let g:syntastic_python_checkers = ['pep8', 'flake8', 'pylint']
 let g:syntastic_check_on_open = 0
-let g:syntastic_python_pep8_args='--ignore=E501'
-let g:syntastic_python_flake8_args='--ignore=E501'
+let g:syntastic_python_pep8_args='--ignore=E501,E226'
+let g:syntastic_python_flake8_args='--ignore=E501,E226'
 let g:syntastic_always_populate_loc_list = 1
 nmap <C-e> :lne<CR>
 
@@ -147,25 +148,22 @@ set mouse=a
 set backspace=2 "
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 au FileType python match OverLength /\%121v.\+/
-nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>w :w<CR>
 
+nnoremap <Leader>p :CtrlP<CR>
 let g:ctrlp_use_caching = 0
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
+set grepprg=ag\ --nogroup\ --nocolor
 
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-else
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
-    let g:ctrlp_prompt_mappings = {
-                \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
-                \ }
-endif
+nnoremap <C-f> :YcmCompleter GoToReferences ""
+
+let g:ctrlp_user_command = 'ag %s -l -g ""'
 
 autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
 
-nnoremap <Leader>] :YcmCompleter GoTo<CR>
-" nnoremap <Leader>[ :YcmCompleter GoToReferences<CR>
+nnoremap <Leader>] :YcmCompleter GoToDefinitionElseDeclaration<CR>
+ nnoremap <Leader>[ :YcmCompleter GoToReferences<CR>
+
+map q: :q
