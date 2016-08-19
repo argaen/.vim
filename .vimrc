@@ -67,7 +67,7 @@ map <f11> :!pysmell .<cr>
 set wildmenu
 
 set hls
-set clipboard=unnamed
+set clipboard=unnamedplus
 set directory-=.    " Don't store swapfiles
 set list            " Show trailing whitespace
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
