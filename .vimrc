@@ -23,7 +23,6 @@ Plugin 'gmarik/Vundle.vim'
 " to delete a plugin remove it here and run :PluginClean
 "
 
-" YOUR LIST OF PLUGINS GOES HERE LIKE THIS:
 Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
@@ -32,10 +31,10 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/gitignore'
-Plugin 'derekwyatt/vim-scala'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'nvie/vim-flake8'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
 
 set updatetime=250
 let mapleader = "\<Space>"
@@ -74,7 +73,6 @@ set list            " Show trailing whitespace
 set listchars=tab:▸\ ,trail:▫
 set scrolloff=5     " Show above/below lines while scrolling
 
-imap ii <Esc>
 
 " Breakpoints for python
 au FileType python map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
@@ -164,6 +162,18 @@ autocmd BufReadPost *
     \ endif
 
 nnoremap <Leader>] :YcmCompleter GoToDefinitionElseDeclaration<CR>
- nnoremap <Leader>[ :YcmCompleter GoToReferences<CR>
+nnoremap <Leader>[ :YcmCompleter GoToReferences<CR>
 
 map q: :q
+
+cnoreabbrev Ack Ack!
+nnoremap <C-a> :Ack!<Space>
+let g:ackprg = 'ag --vimgrep --smart-case'
+let g:ack_autoclose = 1
+let g:ackhighlight = 1
+let g:ackpreview = 1
+let g:ack_use_cword_for_empty_search = 1
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
