@@ -167,7 +167,7 @@ nnoremap <Leader>[ :YcmCompleter GoToReferences<CR>
 map q: :q
 
 cnoreabbrev Ack Ack!
-nnoremap <C-a> :Ack!<Space>
+nnoremap <C-q> :Ack!<Space>
 let g:ackprg = 'ag --vimgrep --smart-case'
 let g:ack_autoclose = 1
 let g:ackhighlight = 1
