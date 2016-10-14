@@ -66,7 +66,7 @@ map <f11> :!pysmell .<cr>
 set wildmenu
 
 set hls
-set clipboard=unnamedplus
+set clipboard=unnamed
 set directory-=.    " Don't store swapfiles
 set list            " Show trailing whitespace
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
@@ -142,7 +142,6 @@ let g:syntastic_python_flake8_args='--ignore=E501,E226'
 let g:syntastic_always_populate_loc_list = 1
 nmap <C-e> :lne<CR>
 
-set mouse=a
 set backspace=2 "
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 au FileType python match OverLength /\%121v.\+/
@@ -151,8 +150,6 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>p :CtrlP<CR>
 let g:ctrlp_use_caching = 0
 set grepprg=ag\ --nogroup\ --nocolor
-
-nnoremap <C-f> :YcmCompleter GoToReferences ""
 
 let g:ctrlp_user_command = 'ag %s -l -g ""'
 
@@ -167,7 +164,7 @@ nnoremap <Leader>[ :YcmCompleter GoToReferences<CR>
 map q: :q
 
 cnoreabbrev Ack Ack!
-nnoremap <C-q> :Ack!<Space>
+nnoremap <C-v> :Ack!<Space>
 let g:ackprg = 'ag --vimgrep --smart-case'
 let g:ack_autoclose = 1
 let g:ackhighlight = 1
@@ -177,3 +174,10 @@ cnoreabbrev ag Ack
 cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
 cnoreabbrev AG Ack
+
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+
+inoremap jk <Esc>
