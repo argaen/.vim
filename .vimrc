@@ -24,6 +24,10 @@ Plugin 'gmarik/Vundle.vim'
 "
 
 Plugin 'bling/vim-airline'
+Plugin 'pangloss/vim-javascript'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'mxw/vim-jsx'
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
@@ -167,6 +171,16 @@ autocmd BufReadPost *
 let g:ycm_auto_trigger=1
 nnoremap <Leader>] :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <Leader>[ :YcmCompleter GoToReferences<CR>
+let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_use_ultisnips_completer = 1
+let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+let g:ycm_complete_in_comments = 1 " Completion in comments
+let g:ycm_complete_in_strings = 1 " Completion in string
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 map q: :q
 
@@ -190,3 +204,5 @@ noremap <Right> <nop>
 
 inoremap jk <Esc> :w<CR>k
 set synmaxcol=120
+
+let g:jsx_ext_required = 0
