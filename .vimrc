@@ -14,7 +14,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 
-" list of plugins {{{2
+" list of plugins
 " let Vundle manage Vundle (this is required)
 Plugin 'gmarik/Vundle.vim'
 
@@ -25,7 +25,7 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
@@ -108,10 +108,12 @@ set t_Co=256
 
 
 "airline
-let g:airline#theme             = 'powerlineish'
+let g:airline#theme='powerlineish'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep=' '
+let g:airline#extensions#tabline#left_alt_sep='|'
 let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#hunks#enabled=0
+let g:airline#extensions#hunks#enabled=1
 let g:airline#extensions#branch#enabled=1
 
 nmap <C-t> :enew<cr>
@@ -129,17 +131,19 @@ hi CursorLine term=none cterm=none ctermbg=235
 hi CursorLineNr ctermbg=235
 
 au BufRead,BufNewFile * setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
-au BufRead,BufNewFile *.py setlocal tabstop=4 shiftwidth=4 expandtab softtabstop=4
+au BufRead,BufNewFile *.php,*.py setlocal tabstop=4 shiftwidth=4 expandtab softtabstop=4
+au BufNewFile,BufRead *.php set filetype=php
 au BufRead,BufNewFile *.less setfiletype css
 
 nmap <F8> :TagbarToggle<CR>
 
 let g:syntastic_python_python_exec = '/usr/local/bin/python3'
-let g:syntastic_python_checkers = ['pep8', 'flake8', 'pylint']
+let g:syntastic_python_checkers = ['pep8', 'flake8']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_javascript_checkers = ['eslint',]
 let g:syntastic_check_on_open = 0
-let g:syntastic_python_pep8_args='--ignore=E501,E226'
-let g:syntastic_python_flake8_args='--ignore=E501,E226'
 let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_wq = 0
 nmap <C-e> :lne<CR>
 
 set backspace=2 "
@@ -149,6 +153,7 @@ nnoremap <Leader>w :w<CR>
 
 nnoremap <Leader>p :CtrlP<CR>
 let g:ctrlp_use_caching = 0
+let g:ctrlp_match_window = 'min:1,max:72'
 set grepprg=ag\ --nogroup\ --nocolor
 
 let g:ctrlp_user_command = 'ag %s -l -g ""'
@@ -158,6 +163,7 @@ autocmd BufReadPost *
     \   exe "normal! g`\"" |
     \ endif
 
+let g:ycm_auto_trigger=1
 nnoremap <Leader>] :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <Leader>[ :YcmCompleter GoToReferences<CR>
 
@@ -181,3 +187,4 @@ noremap <Left> <nop>
 noremap <Right> <nop>
 
 inoremap jk <Esc>
+set synmaxcol=120
