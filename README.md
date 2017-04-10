@@ -18,6 +18,16 @@ __Normal mode__:
 - Gread: git reset the file
 - Gstatus: p for --patch add (- for without patch)
 - Gcommit message
+- Space ]: Go to definition
+- Space [: Go to references
+- Space j: Go to next change (git)
+- Space k: Go to previous change (git)
+- Space hu: undo change
+- Space hs: add change
+- Space hs: see change
+- cs"': Change surrounding from " to '
+- ysw": Surround word (w stands for motion) with ". Another example: ys2w"
+- ds": delete surrounding "
 - Ctrl+p: Set paste mode. Ideal when you need to copy with <C-v>.
 - Ctrl+n: Disable paste mode.
 - za: Fold/unfold

@@ -124,6 +124,8 @@ nmap <C-c> :bp <BAR> bd #<CR>
 imap <C-c> <Esc>:bp <BAR> bd #<CR>
 
 nmap <C-e> :lne<CR>
+map <Leader>j <Plug>GitGutterNextHunk
+map <Leader>k <Plug>GitGutterPrevHunk
 
 colorscheme desert
 set cursorline
@@ -151,7 +153,6 @@ highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 au FileType python match OverLength /\%121v.\+/
 nnoremap <Leader>w :w<CR>
 
-nnoremap <Leader>p :CtrlP<CR>
 let g:ctrlp_use_caching = 0
 let g:ctrlp_match_window = 'min:1,max:72'
 set grepprg=ag\ --nogroup\ --nocolor
@@ -186,5 +187,5 @@ noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
 
-inoremap jk <Esc>
+inoremap jk <Esc> :w<CR>k
 set synmaxcol=120
