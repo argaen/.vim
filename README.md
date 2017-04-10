@@ -2,6 +2,7 @@
 Vim configuration
 
 To install, just place the **.vim** folder under your home. Copy (or ln -s) the **.vim/.vimrc** file under your home also. Then:
+
     - git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     - Open vim a type `:PluginInstall` and wait for the process to end.
 
@@ -14,6 +15,9 @@ To install, just place the **.vim** folder under your home. Copy (or ln -s) the 
 ## Shortcuts
 
 __Normal mode__:
+- Gread: git reset the file
+- Gstatus: p for --patch add (- for without patch)
+- Gcommit message
 - Ctrl+p: Set paste mode. Ideal when you need to copy with <C-v>.
 - Ctrl+n: Disable paste mode.
 - za: Fold/unfold
