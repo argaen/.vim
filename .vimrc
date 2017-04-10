@@ -175,8 +175,9 @@ nnoremap <C-v> :Ack!<Space>
 let g:ackprg = 'ag --vimgrep --smart-case'
 let g:ack_autoclose = 1
 let g:ackhighlight = 1
-let g:ackpreview = 1
 let g:ack_use_cword_for_empty_search = 1
+let g:ack_autofold_results = 1
+let g:ackhighlight = 1
 cnoreabbrev ag Ack
 cnoreabbrev aG Ack
 cnoreabbrev Ag Ack
