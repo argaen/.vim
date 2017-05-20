@@ -89,6 +89,7 @@ set foldmethod=indent
 set foldlevel=99
 
 "airline
+set laststatus=2
 let g:airline#theme='powerlineish'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep=' '
