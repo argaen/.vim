@@ -39,6 +39,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'nvie/vim-flake8'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
+Plugin 'shumphrey/fugitive-gitlab.vim'
+Plugin 'tpope/vim-rhubarb'
 
 let mapleader = "\<Space>"
 map q: :q
@@ -67,7 +69,7 @@ set showcmd
 set nofoldenable
 
 set hls
-set clipboard=unnamedplus
+set clipboard=unnamed
 set directory-=.    " Don't store swapfiles
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 set listchars=tab:▸\ ,trail:▫
@@ -187,3 +189,8 @@ nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 nmap <silent> <C-h> :wincmd h<CR>
+
+let g:fugitive_gitlab_domains = ['https://gitlab.skyscannertools.net', 'https://git@git.prod.skyscanner.local']
+nmap <leader>gh :Gbrowse<CR>
+nmap <leader>gb :Gblame<CR>
+let g:ycm_python_binary_path = 'python'
