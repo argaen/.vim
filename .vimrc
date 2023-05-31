@@ -42,6 +42,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'mileszs/ack.vim'
 Plugin 'shumphrey/fugitive-gitlab.vim'
 Plugin 'tpope/vim-rhubarb'
+Plugin 'Raimondi/delimitMate'
 
 let mapleader = "\<Space>"
 map q: :q
@@ -79,11 +80,14 @@ set scrolloff=5     " Show above/below lines while scrolling
 " Breakpoints for python
 au FileType python map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
 au FileType python map <silent> <leader>B Oimport ipdb; ipdb.set_trace()<esc>
+au FileType javascript map <silent> <leader>b odebugger;<esc>
+au FileType javascript map <silent> <leader>B Odebugger;<esc>
 
 nnoremap j gj
 nnoremap k gk
 
 map <silent> ñ :nohlsearch<CR>
+hi Search ctermbg=LightYellow
 
 cmap w!! w !sudo tee % >/dev/null
 
@@ -114,7 +118,7 @@ hi CursorLine term=none cterm=none ctermbg=235
 hi CursorLineNr ctermbg=235
 
 au BufRead,BufNewFile * setlocal tabstop=2 shiftwidth=2 expandtab softtabstop=2
-au BufRead,BufNewFile *.php,*.py setlocal tabstop=4 shiftwidth=4 expandtab softtabstop=4
+au BufRead,BufNewFile *.php,*.py,*.java setlocal tabstop=4 shiftwidth=4 expandtab softtabstop=4
 au BufRead,BufNewFile *.less setfiletype css
 
 nmap <Leader>t :TagbarToggle<CR>
@@ -126,9 +130,13 @@ let g:syntastic_javascript_checkers = ['eslint',]
 let g:syntastic_check_on_open = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_java_checkers = []
+
 
 set backspace=2 "
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+hi Search ctermbg=DarkBlue
+hi Search ctermfg=Gray
 nnoremap <Leader>w :w<CR>
 
 function! g:FzfFilesSource()
@@ -151,6 +159,9 @@ let g:fzf_preview_window = ['right,50%', 'ctrl-/']
 let g:ycm_auto_trigger=1
 nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <Leader>[ :YcmCompleter GoToReferences<CR>
+nnoremap <Leader>i :YcmCompleter OrganizeImports<CR>
+nnoremap <Leader>f :YcmCompleter FixIt<CR>
+nnoremap <Leader>fo :YcmCompleter Format<CR>
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -199,7 +210,10 @@ nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 
-let g:fugitive_gitlab_domains = ['https://gitlab.skyscannertools.net', 'https://git@git.prod.skyscanner.local']
+let g:fugitive_github_domains = ['https://github.skyscannertools.net']
 nmap <leader>gh :Gbrowse<CR>
 nmap <leader>gb :Gblame<CR>
 let g:ycm_python_binary_path = 'python'
+
+let delimitMate_expand_cr = 1
+highlight Pmenu ctermbg=gray guibg=gray
