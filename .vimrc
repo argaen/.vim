@@ -36,8 +36,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/gitignore'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 Plugin 'nvie/vim-flake8'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'shumphrey/fugitive-gitlab.vim'
 Plugin 'tpope/vim-rhubarb'
@@ -69,12 +70,11 @@ set showcmd
 set nofoldenable
 
 set hls
-set clipboard=unnamed
+set clipboard=unnamedplus
 set directory-=.    " Don't store swapfiles
 :nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 set listchars=tab:▸\ ,trail:▫
 set scrolloff=5     " Show above/below lines while scrolling
-
 
 " Breakpoints for python
 au FileType python map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
@@ -105,8 +105,8 @@ nmap <S-tab> :bprevious<CR>
 nmap <C-c> :bp <BAR> bd #<CR>
 imap <C-c> <Esc>:bp <BAR> bd #<CR>
 
-map <Leader>j <Plug>GitGutterNextHunk
-map <Leader>k <Plug>GitGutterPrevHunk
+map <Leader>j <Plug>(GitGutterNextHunk)
+map <Leader>k <Plug>(GitGutterPrevHunk)
 
 colorscheme desert
 set cursorline
@@ -131,16 +131,25 @@ set backspace=2 "
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 nnoremap <Leader>w :w<CR>
 
-let g:ctrlp_use_caching = 1
-let g:ctrlp_match_window = 'min:1,max:72'
-let g:ctrlp_extensions = ['tag']
-let g:ctrlp_user_command = 'ag %s -l -g ""'
-set grepprg=ag\ --nogroup\ --nocolor
+function! g:FzfFilesSource()
+  let l:base = fnamemodify(expand('%'), ':h:.:S')
+  let l:proximity_sort_path = $HOME . '/.cargo/bin/proximity-sort'
 
+  if base == '.'
+    return 'rg --files'
+  else
+    return printf('rg --files | %s %s', l:proximity_sort_path, expand('%'))
+  endif
+endfunction
 
+" ctrl p brings up the file finder
+noremap <C-p> :call fzf#vim#files('', fzf#vim#with_preview({
+      \ 'source': g:FzfFilesSource(),
+      \ 'options': '--tiebreak=index'}))<CR>
+let g:fzf_preview_window = ['right,50%', 'ctrl-/']
 
 let g:ycm_auto_trigger=1
-nnoremap <Leader>] :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <Leader>[ :YcmCompleter GoToReferences<CR>
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_complete_in_comments = 1
@@ -182,7 +191,7 @@ noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
 
-inoremap jk <Esc> :w<CR>k
+inoremap jk <Esc> :w<CR>
 set synmaxcol=300
 
 nmap <silent> <C-k> :wincmd k<CR>
